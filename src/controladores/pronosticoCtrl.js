@@ -51,6 +51,17 @@ export const listarPartidos = async (req, res) => {
   }
 };
 
+export const resultadpsPronostico = async (req, res) => {
+  try {
+    const [resultados] = await conmysql.query(`
+       SELECT * FROM resultado
+    `);
+
+    res.json(resultados);
+  } catch (error) {
+    res.status(500).json({ message: "Error al listar resultados", error });
+  }
+};
 // Listar resultados
 export const listarResultados = async (req, res) => {
   try {
@@ -73,3 +84,5 @@ export const listarResultados = async (req, res) => {
     res.status(500).json({ message: "Error al listar resultados", error });
   }
 };
+
+
